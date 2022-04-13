@@ -11,7 +11,6 @@ function App() {
      <Header 
      title="Kalkulator walut" />
      <Section
-     title="Przelicz walutę"
      body={<Form />}
      extraContent={<Result />}
      />

@@ -2,23 +2,23 @@ import "./style.css";
 
 const Form = () => {
     return (
-        <form class="form js-form">
-            <fieldset class="form__fieldset">
-                <legend class="form__legend">Przelicz walutę</legend>
+        <form className="form js-form">
+            <fieldset className="form__fieldset">
+                <legend className="form__legend">Przelicz walutę</legend>
                 <p>
-                    <label class="form__label">
-                        <span class="form__labelText">
+                    <label className="form__label">
+                        <span className="form__labelText">
                             Wpisz kwotę w PLN*:
                         </span>
-                        <input class="form__input js-value" required type="number" min="1" name="value" step="any" />
+                        <input className="form__input js-value" required type="number" min="1" name="value" step="any" />
                     </label>
                 </p>
                 <p>
-                    <label class="form__label">
-                        <span class="form__labelText">
+                    <label className="form__label">
+                        <span className="form__labelText">
                             Wybierz walutę:
                         </span>
-                        <select class="js-currency" name="currency" >
+                        <select className="js-currency" name="currency" >
                             <option value="EUR">Euro</option>
                             <option value="USD">Dolar amerykański</option>
                             <option value="GBP">Funt brytyjski</option>
@@ -27,8 +27,8 @@ const Form = () => {
                     </label>
                 </p>
             </fieldset>
-            <p class="form__paragraph">Obowiązkowe pola są oznaczone gwiazdką*.</p>
-            <button class="form__button">Oblicz</button>
+            <p className="form__paragraph">Obowiązkowe pola są oznaczone gwiazdką*.</p>
+            <button className="form__button">Oblicz</button>
         </form>
     );
 };
