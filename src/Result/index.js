@@ -1,8 +1,8 @@
 import "./style.css";
 
-const Result = () => (
+const Result = ({ value, toCurrency }) => (
     <p className="paragraph">
-        Kwota wynosi:
+        Kwota wynosi: {value} {toCurrency}
     </p>
 );
 export default Result;
