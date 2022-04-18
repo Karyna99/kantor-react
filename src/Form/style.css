@@ -16,12 +16,14 @@
     display: inline-block;
     width: 50%;
     margin: 5px;
+    font-size: 20px;
 }
 
 .form__input {
     border: 1px solid rgb(146, 146, 146);
     border-radius: 5px;
     padding: 5px;
+    font-size: 20px;
 }
 
 .form__input:invalid {
@@ -33,7 +35,7 @@
     border: none;
     border-radius: 5px;
     padding: 12px;
-    margin-left: 10px;
+    margin: 15px;
     font-weight: 600;
 }
 
@@ -47,5 +49,14 @@
 
 .form__paragraph {
     font-size: 12px;
-    margin: 15px;
+    margin-left: 15px;
+}
+
+.form__result {
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.form__paragraphResult {
+    margin: 5px 0;
 }
