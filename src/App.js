@@ -2,19 +2,18 @@ import './App.css';
 import Header from './Header';
 import Form from './Form';
 import Section from './Section';
-import Result from './Result';
 import Container from './Container';
-import {useState} from "react";
+import { useState } from "react";
 
 function App() {
   const [result, setResult] = useState(0);
 
   const calculateResult = (
-    value, 
-    toCurrency, 
-    rateFromCurrency, 
+    value,
+    toCurrency,
+    rateFromCurrency,
     rateToCurrency
-    ) => {
+  ) => {
     setResult({
       finalValue: (+value * rateFromCurrency) / rateToCurrency,
       finalCurrency: toCurrency,
@@ -26,11 +25,9 @@ function App() {
       <Header
         title="Kalkulator walut" />
       <Section
-        body={<Form />}
-        extraContent={<Result
+        body={<Form
           calculateResult={calculateResult}
-          result={result}
-        />}
+          result={result} />}
       />
     </Container>
   );

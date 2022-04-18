@@ -1,12 +1,40 @@
 import "./style.css";
 import { useState } from "react";
-import currencies from "../currencies";
+import RenderResult from "./RenderResult";
 
-const Form = () => {
-    const [value, setValue] = useState(0);
-    const [result, setResult] = useState(0);
-    const [fromCurrency, setFromCurrency] = useState("");
-    const [toCurrency, setToCurrency] = useState("");
+
+const Form = ({ result, calculateResult }) => {
+    const [value, setValue] = useState("");
+    const [fromCurrency, setFromCurrency] = useState("PLN");
+    const [toCurrency, setToCurrency] = useState("EUR");
+
+    const currencies = [
+        {
+            name: "Złoty",
+            shortName: "PLN",
+            rate: 1,
+        },
+        {
+            name: "Euro",
+            shortName: "EUR",
+            rate: 4.53,
+        },
+        {
+            name: "Dolar amerykański",
+            shortName: "USD",
+            rate: 3.99,
+        },
+        {
+            name: "Funt brytyjski",
+            shortName: "GBP",
+            rate: 5.43,
+        },
+        {
+            name: "Frank szwajcarski",
+            shortName: "CHF",
+            rate: 4.33,
+        },
+    ];
 
     const onValueChange = (event) => setValue(event.target.value);
 
@@ -16,25 +44,22 @@ const Form = () => {
 
     const fromCurrencies = () =>
         currencies.find((currency) => currency.shortName === fromCurrency).rate;
+    const rateFromCurrency = fromCurrencies(onSetFromCurrency);
 
     const toCurrencies = () =>
-        currencies.find((currency) => currency.shortName === toCurrency).rate;
-    const rateToCurrency = toCurrencies()
+        currencies.find(({ shortName }) => shortName === toCurrency).rate;
+    const rateToCurrency = toCurrencies(onSetToCurrency);
 
-    const formSubmit = async (event) => {
+    const formSubmit = (event) => {
         event.preventDefault();
-        const formValid = +value >= 0 && fromCurrency && toCurrency;
-
-        if (!formValid) {
-            return;
-        };
-        const res = await fetch(
-            `https://api.exchangeratesapi.io/latest?base=${fromCurrency}`
+        
+        calculateResult(
+            value,
+            rateFromCurrency,
+            rateToCurrency,
+            toCurrency
         );
-        const { rates } = await res.json();
-        setResult(+value * rates[toCurrency]);
     };
-
 
     return (
         <>
@@ -66,8 +91,11 @@ const Form = () => {
                                 value={fromCurrency}
                                 onChange={onSetFromCurrency}
                             >
-                                {fromCurrencies.map((currency) => (
-                                    <option key={currency}>{currency}</option>
+                                {currencies.map((currency) => (
+                                    <option
+                                        key={currency.name}
+                                        value={currency.shortName}
+                                    >{currency.shortName}</option>
                                 ))}
                             </select>
 
@@ -79,19 +107,23 @@ const Form = () => {
                                 value={toCurrency}
                                 onChange={onSetToCurrency}
                             >
-                                {toCurrencies.map((currency) => (
-                                    <option key={currency}>{currency}</option>
+                                {currencies.map((currency) => (
+                                    <option
+                                        key={currency.name}
+                                        value={currency.shortName}
+                                    >{currency.shortName}</option>
                                 ))}
                             </select>
                         </label>
                     </p>
                 </fieldset>
                 <p className="form__paragraph">Obowiązkowe pola są oznaczone gwiazdką*.</p>
-                <button className="form__button" type="submit">Oblicz</button>
+                <button className="form__button">Oblicz</button>
+                <div className="form__result">
+                    <p className="form__paragraphResult">Kwota wynosi:<RenderResult result={result} />
+                    </p>
+                </div>
             </form>
-            <div>
-                Kwota wynosi: {result.toFixed(2)} {toCurrency}
-            </div>
         </>
     );
 };
