@@ -10,10 +10,6 @@ const Form = () => {
 
     const currencies = [
         {
-            name: "PLN",
-            rate: 1,
-        },
-        {
             name: "EUR",
             rate: 4.53,
         },
