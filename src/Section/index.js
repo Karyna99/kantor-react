@@ -1,10 +1,9 @@
 import "./style.css";
 
-const Section = ({body, extraContent}) => (
+const Section = ({body}) => (
     <section className="section">
         <div>
             {body}
-            {extraContent}
         </div>
     </section>
 );

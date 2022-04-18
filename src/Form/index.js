@@ -10,44 +10,39 @@ const Form = ({ result, calculateResult }) => {
 
     const currencies = [
         {
-            name: "Złoty",
-            shortName: "PLN",
+            name: "PLN",
             rate: 1,
         },
         {
-            name: "Euro",
-            shortName: "EUR",
+            name: "EUR",
             rate: 4.53,
         },
         {
-            name: "Dolar amerykański",
-            shortName: "USD",
+            name: "USD",
             rate: 3.99,
         },
         {
-            name: "Funt brytyjski",
-            shortName: "GBP",
+            name: "GBP",
             rate: 5.43,
         },
         {
-            name: "Frank szwajcarski",
-            shortName: "CHF",
+            name: "CHF",
             rate: 4.33,
         },
     ];
 
-    const onValueChange = (event) => setValue(event.target.value);
+    const onValueChange = ({target}) => setValue(target.value);
 
-    const onSetFromCurrency = (event) => setFromCurrency(event.target.value);
+    const onSetFromCurrency = ({target}) => setFromCurrency(target.value);
 
-    const onSetToCurrency = (event) => setToCurrency(event.target.value);
+    const onSetToCurrency = ({target}) => setToCurrency(target.value);
 
     const fromCurrencies = () =>
-        currencies.find((currency) => currency.shortName === fromCurrency).rate;
+        currencies.find(({ name }) => name === fromCurrency).rate;
     const rateFromCurrency = fromCurrencies(onSetFromCurrency);
 
     const toCurrencies = () =>
-        currencies.find(({ shortName }) => shortName === toCurrency).rate;
+        currencies.find(({ name }) => name === toCurrency).rate;
     const rateToCurrency = toCurrencies(onSetToCurrency);
 
     const formSubmit = (event) => {
@@ -76,8 +71,8 @@ const Form = ({ result, calculateResult }) => {
                                 value={value}
                                 onChange={onValueChange}
                                 required type="number"
-                                min="1"
-                                step="any"
+                                min="0.01"
+                                step="0.01"
                             />
                         </label>
                     </p>
@@ -94,8 +89,8 @@ const Form = ({ result, calculateResult }) => {
                                 {currencies.map((currency) => (
                                     <option
                                         key={currency.name}
-                                        value={currency.shortName}
-                                    >{currency.shortName}</option>
+                                        value={currency.name}
+                                    >{currency.name}</option>
                                 ))}
                             </select>
 
@@ -110,15 +105,18 @@ const Form = ({ result, calculateResult }) => {
                                 {currencies.map((currency) => (
                                     <option
                                         key={currency.name}
-                                        value={currency.shortName}
-                                    >{currency.shortName}</option>
+                                        value={currency.name}
+                                    >{currency.name}</option>
                                 ))}
                             </select>
                         </label>
                     </p>
                 </fieldset>
                 <p className="form__paragraph">Obowiązkowe pola są oznaczone gwiazdką*.</p>
-                <button className="form__button">Oblicz</button>
+                <button 
+                className="form__button" 
+                type="submit"
+                >Oblicz</button>
                 <div className="form__result">
                     <p className="form__paragraphResult">Kwota wynosi:<RenderResult result={result} />
                     </p>
