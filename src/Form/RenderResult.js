@@ -1,12 +1,5 @@
-const RenderResult = ({ result }) => {
-  if (!result) {
-    return <span className="result">N/A</span>;
-  }
-  return (
-    <span className="result">
-      {result.finalValue.toFixed(2)}&nbsp;{result.finalCurrency}
-    </span>
-  );
+const render = ({targetAmount, outputCurrency}) => {
+  return `${targetAmount.toFixed(2)} ${outputCurrency}`
 };
 
-export default RenderResult;
+export default render;

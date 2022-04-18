@@ -1,12 +1,12 @@
 import "./style.css";
 import { useState } from "react";
-import RenderResult from "./RenderResult";
+import render from "./RenderResult";
 
 
-const Form = ({ result, calculateResult }) => {
-    const [value, setValue] = useState("");
-    const [fromCurrency, setFromCurrency] = useState("PLN");
-    const [toCurrency, setToCurrency] = useState("EUR");
+const Form = () => {
+    const [input, setInput] = useState("");
+    const [outputCurrency, setOutputCurrency] = useState("EUR");
+    const [result, setResult] = useState("");
 
     const currencies = [
         {
@@ -29,36 +29,30 @@ const Form = ({ result, calculateResult }) => {
             name: "CHF",
             rate: 4.33,
         },
-    ];
+    ]; 
 
-    const onValueChange = ({target}) => setValue(target.value);
+    const onInputChange = ({ target }) => setInput(target.value);
+    const onOutputCurrencyChange = ({ target }) => setOutputCurrency(target.value);
 
-    const onSetFromCurrency = ({target}) => setFromCurrency(target.value);
+    const calculateResult = (outputCurrency) => {
+        const currencyRate = currencies.find(({ name }) => name === outputCurrency).rate;
 
-    const onSetToCurrency = ({target}) => setToCurrency(target.value);
-
-    const fromCurrencies = () =>
-        currencies.find(({ name }) => name === fromCurrency).rate;
-    const rateFromCurrency = fromCurrencies(onSetFromCurrency);
-
-    const toCurrencies = () =>
-        currencies.find(({ name }) => name === toCurrency).rate;
-    const rateToCurrency = toCurrencies(onSetToCurrency);
-
-    const formSubmit = (event) => {
-        event.preventDefault();
-        
-        calculateResult(
-            value,
-            rateFromCurrency,
-            rateToCurrency,
-            toCurrency
+        setResult(
+            render({
+                targetAmount: +input / currencyRate,
+                outputCurrency,
+            })
         );
     };
 
+    const onFormSubmit = (event) => {
+        event.preventDefault();
+        calculateResult(outputCurrency);
+    };
+
     return (
-        <>
-            <form className="form" onClick={formSubmit}>
+        
+            <form className="form" onClick={onFormSubmit}>
                 <fieldset className="form__fieldset">
                     <legend className="form__legend">Przelicz walutę</legend>
                     <p>
@@ -68,39 +62,25 @@ const Form = ({ result, calculateResult }) => {
                             </span>
                             <input
                                 className="form__input"
-                                value={value}
-                                onChange={onValueChange}
-                                required type="number"
+                                value={input}
+                                onChange={onInputChange}
+                                required
+                                autoFocus
+                                type="number"
                                 min="0.01"
                                 step="0.01"
                             />
                         </label>
                     </p>
                     <p>
-                        <label className="form__label">
-                            <span className="form__labelText">
-                                Wybierz początkową walutę:
-                            </span>
-                            <select
-                                name="currency"
-                                value={fromCurrency}
-                                onChange={onSetFromCurrency}
-                            >
-                                {currencies.map((currency) => (
-                                    <option
-                                        key={currency.name}
-                                        value={currency.name}
-                                    >{currency.name}</option>
-                                ))}
-                            </select>
-
+                        <label>
                             <span className="form__labelText">
                                 Wybierz docelową walutę:
                             </span>
                             <select
                                 name="currency"
-                                value={toCurrency}
-                                onChange={onSetToCurrency}
+                                value={outputCurrency}
+                                onChange={onOutputCurrencyChange}
                             >
                                 {currencies.map((currency) => (
                                     <option
@@ -118,11 +98,10 @@ const Form = ({ result, calculateResult }) => {
                 type="submit"
                 >Oblicz</button>
                 <div className="form__result">
-                    <p className="form__paragraphResult">Kwota wynosi:<RenderResult result={result} />
+                    <p className="form__paragraphResult">Kwota wynosi:<strong>{result}</strong> 
                     </p>
                 </div>
             </form>
-        </>
     );
 };
 
