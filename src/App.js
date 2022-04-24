@@ -11,7 +11,7 @@ function App() {
       <Header
         title="Kalkulator walut" />
       <Section
-        body={<Form/>}
+        body={<Form />}
       />
     </Container>
   );

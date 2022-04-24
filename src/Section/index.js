@@ -1,6 +1,6 @@
 import "./style.css";
 
-const Section = ({body}) => (
+const Section = ({ body }) => (
     <section className="section">
         <div>
             {body}
