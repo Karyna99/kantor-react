@@ -3,6 +3,7 @@ import Header from './Header';
 import Form from './Form';
 import Section from './Section';
 import Container from './Container';
+import Date from './Date';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Section
         body={<Form />}
       />
+      <Date/>
     </Container>
   );
 }
