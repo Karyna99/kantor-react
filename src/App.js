@@ -14,7 +14,7 @@ function App() {
       <Section
         body={<Form />}
       />
-      <Date/>
+      <Date />
     </Container>
   );
 }
