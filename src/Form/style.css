@@ -30,6 +30,12 @@
     background-color: rgba(235, 168, 168, 0.397);
 }
 
+@media (max-width: 767px) {
+    .form__input {
+        max-width: 80%;
+    }
+}
+
 .form__button {
     background-color: rgb(168, 194, 241);
     border: none;
