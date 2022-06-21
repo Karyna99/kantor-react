@@ -1,31 +1,13 @@
 import "./style.css";
 import { useState } from "react";
 import render from "./renderResult";
+import currencies from "../currencies";
 
 
 const Form = () => {
     const [input, setInput] = useState("");
     const [outputCurrency, setOutputCurrency] = useState("EUR");
     const [result, setResult] = useState("");
-
-    const currencies = [
-        {
-            name: "EUR",
-            rate: 4.53,
-        },
-        {
-            name: "USD",
-            rate: 3.99,
-        },
-        {
-            name: "GBP",
-            rate: 5.43,
-        },
-        {
-            name: "CHF",
-            rate: 4.33,
-        },
-    ];
 
     const onInputChange = ({ target }) => setInput(target.value);
     const onOutputCurrencyChange = ({ target }) => setOutputCurrency(target.value);

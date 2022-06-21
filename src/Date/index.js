@@ -1,25 +1,12 @@
-import getCurrentDate from "./getCurrentDate";
+import useCurrentDate from "./useCurrentDate";
 import "./style.css";
 
 const Date = () => {
-    const formatDate = (date) => {
-        return date.toLocaleString(
-            "pl", {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-            minute: "numeric",
-            hour: "numeric",
-        }
-        );
-    };
-
-    const date = getCurrentDate();
+    const date = useCurrentDate();
 
     return (
         <p className="date__paragraph">
-            {formatDate(date)}
+            {date}
         </p>
     );
 };
