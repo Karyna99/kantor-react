@@ -2,7 +2,7 @@ import "./style.css";
 import { useState } from "react";
 import render from "./renderResult";
 import currencies from "../currencies";
-
+import { StyledForm, StyledFieldset, StyledText, Input, Button, ResultWrapper } from "../styled";
 
 const Form = () => {
     const [input, setInput] = useState("");
@@ -13,7 +13,7 @@ const Form = () => {
     const onOutputCurrencyChange = ({ target }) => setOutputCurrency(target.value);
 
     const calculateResult = (outputCurrency) => {
-        const currencyRate = currencies.find(({ name }) => name === outputCurrency).rate;
+        const currencyRate = currencies.find(({ shortName }) => shortName === outputCurrency).rate;
 
         setResult(
             render({
@@ -32,57 +32,47 @@ const Form = () => {
     };
 
     return (
-
-        <form className="form" onClick={onFormSubmit}>
-            <fieldset className="form__fieldset">
-                <legend className="form__legend">Przelicz walutę</legend>
-                <p>
-                    <label className="form__label">
-                        <span className="form__labelText">
-                            Wpisz kwotę w PLN*:
-                        </span>
-                        <input
-                            className="form__input"
-                            value={input}
-                            onChange={onInputChange}
-                            required
-                            autoFocus
-                            type="number"
-                            min="0.01"
-                            step="0.01"
-                        />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        <span className="form__labelText">
-                            Wybierz docelową walutę:
-                        </span>
-                        <select
-                            name="currency"
-                            value={outputCurrency}
-                            onChange={onOutputCurrencyChange}
-                        >
-                            {currencies.map((currency) => (
-                                <option
-                                    key={currency.name}
-                                    value={currency.name}
-                                >{currency.name}</option>
-                            ))}
-                        </select>
-                    </label>
-                </p>
-            </fieldset>
-            <p className="form__paragraph">Obowiązkowe pola są oznaczone gwiazdką*.</p>
-            <button
-                className="form__button"
+        <StyledForm onClick={onFormSubmit}>
+            <StyledFieldset>
+                <StyledText big>Przelicz walutę</StyledText>
+                <StyledText regular>
+                    Wpisz kwotę w PLN*:
+                </StyledText>
+                <Input
+                    className="form__input"
+                    value={input}
+                    onChange={onInputChange}
+                    required
+                    autoFocus
+                    type="number"
+                    min="0.01"
+                    step="0.01"
+                />
+                <StyledText regular>
+                    Wybierz docelową walutę:
+                </StyledText>
+                <select
+                    name="currency"
+                    value={outputCurrency}
+                    onChange={onOutputCurrencyChange}
+                >
+                    {currencies.map((currency) => (
+                        <option
+                            key={currency.name}
+                            value={currency.name}
+                        >{currency.shortName}</option>
+                    ))}
+                </select>
+            </StyledFieldset>
+            <StyledText smallText>Obowiązkowe pola są oznaczone gwiazdką*.</StyledText>
+            <Button
                 type="submit"
-            >Oblicz</button>
-            <div className="form__result">
-                <p className="form__paragraphResult">Kwota wynosi:<strong>{result}</strong>
+            >Oblicz</Button>
+            <ResultWrapper>
+                <p>Kwota wynosi:<strong>{` ${result}`}</strong>
                 </p>
-            </div>
-        </form>
+            </ResultWrapper>
+        </StyledForm>
     );
 };
 
