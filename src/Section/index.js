@@ -1,12 +1,12 @@
-import "./style.css";
+import { StyledSection } from "../styled";
 
 const Section = ({ body }) => (
 
-        <section className="section">
+        <StyledSection>
             <div>
                 {body}
             </div>
-        </section>
+        </StyledSection>
 
 );
 
