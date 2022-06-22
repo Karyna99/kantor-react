@@ -1,5 +1,5 @@
-const render = ({targetAmount, outputCurrency}) => {
+const renderResult = ({targetAmount, outputCurrency}) => {
   return `${targetAmount.toFixed(2)} ${outputCurrency}`
 };
 
-export default render;
+export default renderResult;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useFetchData } from "./useFetchData";
-import render from "./renderResult";
+import renderResult from "./renderResult";
 import { StyledForm, Fieldset, Text, Input, Button, ResultWrapper } from "./styled";
 
 const Form = () => {
@@ -16,7 +16,7 @@ const Form = () => {
         const currencyRate = rates[outputCurrency];
 
         setResult(
-            render({
+            renderResult({
                 targetAmount: +input * currencyRate,
                 outputCurrency,
             })
