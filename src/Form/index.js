@@ -1,5 +1,6 @@
 import "./style.css";
 import { useState } from "react";
+import { useFetchData } from "./useFetchData";
 import render from "./renderResult";
 import currencies from "../currencies";
 import { StyledForm, StyledFieldset, StyledText, Input, Button, ResultWrapper } from "../styled";
@@ -8,12 +9,13 @@ const Form = () => {
     const [input, setInput] = useState("");
     const [outputCurrency, setOutputCurrency] = useState("EUR");
     const [result, setResult] = useState("");
+    const { status, ratesDate, rates } = useFetchData();
 
     const onInputChange = ({ target }) => setInput(target.value);
     const onOutputCurrencyChange = ({ target }) => setOutputCurrency(target.value);
 
     const calculateResult = (outputCurrency) => {
-        const currencyRate = currencies.find(({ shortName }) => shortName === outputCurrency).rate;
+        const currencyRate = rates[outputCurrency];
 
         setResult(
             render({
@@ -31,6 +33,15 @@ const Form = () => {
         calculateResult(outputCurrency);
     };
 
+    if (status === "loading") {
+        return <StyledText>
+            Pobieram kursy walut z serwera...
+        </StyledText>
+    } else if (status === "error") {
+        return <StyledText>
+            Oops! Cos poszło nie tak😢. Koniecznie zajrzyj później!
+        </StyledText>
+    }
     return (
         <StyledForm onClick={onFormSubmit}>
             <StyledFieldset>
