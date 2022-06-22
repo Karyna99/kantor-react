@@ -16,11 +16,6 @@ const theme = {
     }
 };
 
-export const StyledDate = styled.p`
-    display: flex;
-    justify-content: flex-end;
-`;
-
 export const StyledForm = styled.form`
     padding: 20px 10px;
 `;

@@ -1,13 +1,12 @@
 import useCurrentDate from "./useCurrentDate";
-import "./style.css";
+import { StyledDate } from "./styled";
 
 const Date = () => {
     const date = useCurrentDate();
-
     return (
-        <p className="date__paragraph">
+        <StyledDate>
             {date}
-        </p>
+        </StyledDate>
     );
 };
 
