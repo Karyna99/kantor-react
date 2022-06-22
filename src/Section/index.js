@@ -1,4 +1,4 @@
-import { StyledSection } from "../styled";
+import { StyledSection } from "./styled";
 
 const Section = ({ body }) => (
     <StyledSection>

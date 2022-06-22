@@ -5,7 +5,7 @@ import Section from './Section';
 import Container from './Container';
 import Date from './Date';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './styled';
+import { theme } from './theme';
 
 function App() {
 

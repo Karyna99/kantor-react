@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFetchData } from "./useFetchData";
 import render from "./renderResult";
-import { StyledForm, StyledFieldset, StyledText, Input, Button, ResultWrapper } from "../styled";
+import { StyledForm, StyledFieldset, StyledText, Input, Button, ResultWrapper } from "./styled";
 
 const Form = () => {
     const [input, setInput] = useState("");

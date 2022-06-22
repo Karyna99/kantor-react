@@ -1,21 +1,5 @@
 import styled, { css } from "styled-components";
 
-const theme = {
-    colors: {
-        primaryColor: "#a8c2f1",
-        invalidColor: "#eba8a865",
-        borderColor: "#929292",
-        backgroundColor: "white",
-    },
-    breakpoints: {
-        mobile: 767,
-    },
-    fontSize: {
-        smaller: "12px",
-        normal: "20px",
-    }
-};
-
 export const StyledForm = styled.form`
     padding: 20px 10px;
 `;
@@ -93,19 +77,3 @@ export const ResultWrapper = styled.div`
     font-size: ${({ theme }) => theme.fontSize.normal};
     margin-left: 15px;
 `;
-
-export const StyledHeader = styled.h1`
-    padding: 10px;
-    background-color: ${({ theme }) => theme.colors.primaryColor};
-    border-radius: 10px;
-    font-size: 30px;
-    font-weight: 600;
-`;
-
-export const StyledSection = styled.section`
-    background-color: ${({ theme }) => theme.colors.backgroundColor};
-    border-radius: 10px;
-    box-shadow: 5px 7px 5px 0px rgba(0, 0, 0, 0.11);
-`;
-
-export { theme };

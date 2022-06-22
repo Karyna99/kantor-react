@@ -1,4 +1,4 @@
-import { StyledHeader } from "../styled";
+import { StyledHeader } from "./styled";
 
 const Header = ({ title }) => (
     <StyledHeader>{title}</StyledHeader>
