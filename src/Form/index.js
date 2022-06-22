@@ -1,8 +1,6 @@
-import "./style.css";
 import { useState } from "react";
 import { useFetchData } from "./useFetchData";
 import render from "./renderResult";
-import currencies from "../currencies";
 import { StyledForm, StyledFieldset, StyledText, Input, Button, ResultWrapper } from "../styled";
 
 const Form = () => {
@@ -19,7 +17,7 @@ const Form = () => {
 
         setResult(
             render({
-                targetAmount: +input / currencyRate,
+                targetAmount: +input * currencyRate,
                 outputCurrency,
             })
         );
@@ -67,11 +65,11 @@ const Form = () => {
                     value={outputCurrency}
                     onChange={onOutputCurrencyChange}
                 >
-                    {currencies.map((currency) => (
+                    {Object.keys(rates).map((currency) => (
                         <option
-                            key={currency.name}
-                            value={currency.name}
-                        >{currency.shortName}</option>
+                            key={currency}
+                            value={currency}
+                        >{currency}</option>
                     ))}
                 </select>
             </StyledFieldset>
@@ -83,6 +81,10 @@ const Form = () => {
                 <p>Kwota wynosi:<strong>{` ${result}`}</strong>
                 </p>
             </ResultWrapper>
+            <StyledText apiDate>
+                Kursy walut są pobierane z Europejskiego Banku Centralnego.
+                Aktualne na dzień:<strong>{` ${ratesDate}`}</strong>
+            </StyledText>
         </StyledForm>
     );
 };

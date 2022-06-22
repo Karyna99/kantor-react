@@ -36,14 +36,19 @@ export const StyledText = styled.p`
 
     ${(props) => props.regular && css`
         display: inline-block;
-        width: 50%;
         margin: 10px 0;
+        margin-right: 20px;
         font-size: ${({ theme }) => theme.fontSize.normal};
     `}
 
     ${(props) => props.smallText && css`
         font-size: ${({ theme }) => theme.fontSize.smaller};
         margin-left: 12px;
+    `}
+
+    ${(props) => props.apiDate && css`
+        font-size: ${({ theme }) => theme.fontSize.smaller};
+        text-align: center;
     `}
 `;
 
