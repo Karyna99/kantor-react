@@ -14,12 +14,11 @@ const useFetchData = () => {
                 const response = await axios.get(path);
                 setRates(response.data.rates);
                 setRatesDate(response.data.date);
-                setStatus({ state: "ok" });
+                setStatus(() => "ok");
             } catch (error) {
-                setStatus({ state: "error" });
+                setStatus(() => "error");
             };
         };
-
         setTimeout(getData, 2000);
     }, []);
 

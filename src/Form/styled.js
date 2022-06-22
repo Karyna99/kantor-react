@@ -4,7 +4,7 @@ export const StyledForm = styled.form`
     padding: 20px 10px;
 `;
 
-export const StyledText = styled.p`
+export const Text = styled.p`
     font-size: ${({ theme }) => theme.fontSize.normal};
 
     ${(props) => props.big && css`
@@ -29,9 +29,13 @@ export const StyledText = styled.p`
         font-size: ${({ theme }) => theme.fontSize.smaller};
         text-align: center;
     `}
+
+    ${(props) => props.statusInfo && css`
+        padding: 20px;
+    `}
 `;
 
-export const StyledFieldset = styled.fieldset`
+export const Fieldset = styled.fieldset`
     border: none;
     padding: 0 12px;
 `;

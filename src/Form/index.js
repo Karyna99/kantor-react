@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFetchData } from "./useFetchData";
 import render from "./renderResult";
-import { StyledForm, StyledFieldset, StyledText, Input, Button, ResultWrapper } from "./styled";
+import { StyledForm, Fieldset, Text, Input, Button, ResultWrapper } from "./styled";
 
 const Form = () => {
     const [input, setInput] = useState("");
@@ -32,21 +32,21 @@ const Form = () => {
     };
 
     if (status === "loading") {
-        return <StyledText>
+        return <Text statusInfo>
             Pobieram kursy walut z serwera...
-        </StyledText>
+        </Text>
     } else if (status === "error") {
-        return <StyledText>
+        return <Text statusInfo>
             Oops! Cos poszło nie tak😢. Koniecznie zajrzyj później!
-        </StyledText>
+        </Text>
     }
     return (
         <StyledForm onClick={onFormSubmit}>
-            <StyledFieldset>
-                <StyledText big>Przelicz walutę</StyledText>
-                <StyledText regular>
+            <Fieldset>
+                <Text big>Przelicz walutę</Text>
+                <Text regular>
                     Wpisz kwotę w PLN*:
-                </StyledText>
+                </Text>
                 <Input
                     className="form__input"
                     value={input}
@@ -57,9 +57,9 @@ const Form = () => {
                     min="0.01"
                     step="0.01"
                 />
-                <StyledText regular>
+                <Text regular>
                     Wybierz docelową walutę:
-                </StyledText>
+                </Text>
                 <select
                     name="currency"
                     value={outputCurrency}
@@ -72,8 +72,8 @@ const Form = () => {
                         >{currency}</option>
                     ))}
                 </select>
-            </StyledFieldset>
-            <StyledText smallText>Obowiązkowe pola są oznaczone gwiazdką*.</StyledText>
+            </Fieldset>
+            <Text smallText>Obowiązkowe pola są oznaczone gwiazdką*.</Text>
             <Button
                 type="submit"
             >Oblicz</Button>
@@ -81,10 +81,10 @@ const Form = () => {
                 <p>Kwota wynosi:<strong>{` ${result}`}</strong>
                 </p>
             </ResultWrapper>
-            <StyledText apiDate>
+            <Text apiDate>
                 Kursy walut są pobierane z Europejskiego Banku Centralnego.
                 Aktualne na dzień:<strong>{` ${ratesDate}`}</strong>
-            </StyledText>
+            </Text>
         </StyledForm>
     );
 };
