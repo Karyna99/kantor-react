@@ -6,16 +6,8 @@ html {
   background: url("https://www.grantex.cz/files/obehove-hospodarstvi.jpg") no-repeat center center fixed;
 }
 
-
-
 *, ::after, ::before {
   box-sizing: inherit;
 }
 
-body {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0 10px;
-  font-family: Poppins, sans-serif;
-}
 

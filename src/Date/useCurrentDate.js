@@ -12,7 +12,7 @@ const useCurrentDate = () => {
             clearInterval(intervalID)
         });
     }, []);
-    
+
     const formatDate = (date) => {
         return date.toLocaleString(
             "pl", {
@@ -25,7 +25,6 @@ const useCurrentDate = () => {
         }
         );
     };
-
     return formatDate(date);
 };
 

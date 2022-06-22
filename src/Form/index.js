@@ -27,7 +27,7 @@ const Form = () => {
         event.preventDefault();
         if (input < 0) {
             return;
-        }
+        };
         calculateResult(outputCurrency);
     };
 
@@ -37,8 +37,8 @@ const Form = () => {
         </Text>
     } else if (status === "error") {
         return <Text statusInfo>
-            Oops! Cos poszło nie tak😢. Koniecznie zajrzyj później!
-        </Text>
+                    Oops! Cos poszło nie tak😢. Koniecznie zajrzyj później!
+                </Text>
     }
     return (
         <StyledForm onClick={onFormSubmit}>
