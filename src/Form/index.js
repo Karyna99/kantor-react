@@ -64,8 +64,8 @@ const Form = () => {
                     name="currency"
                     value={outputCurrency}
                     onChange={onOutputCurrencyChange}
-                >
-                    {Object.keys(rates).map((currency) => (
+                >   
+                   {Object.keys(rates).map((currency) => (
                         <option
                             key={currency}
                             value={currency}
