@@ -37,8 +37,8 @@ const Form = () => {
         </Text>
     } else if (status === "error") {
         return <Text statusInfo>
-                    Oops! Cos poszło nie tak😢. Koniecznie zajrzyj później!
-                </Text>
+            Oops! Cos poszło nie tak😢. Koniecznie zajrzyj później!
+        </Text>
     }
     return (
         <StyledForm onClick={onFormSubmit}>
@@ -64,8 +64,8 @@ const Form = () => {
                     name="currency"
                     value={outputCurrency}
                     onChange={onOutputCurrencyChange}
-                >   
-                   {Object.keys(rates).map((currency) => (
+                >
+                    {Object.keys(rates).map((currency) => (
                         <option
                             key={currency}
                             value={currency}
@@ -76,7 +76,8 @@ const Form = () => {
             <Text smallText>Obowiązkowe pola są oznaczone gwiazdką*.</Text>
             <Button
                 type="submit"
-            >Oblicz</Button>
+            >Oblicz
+            </Button>
             <ResultWrapper>
                 <p>Kwota wynosi:<strong>{` ${result}`}</strong>
                 </p>

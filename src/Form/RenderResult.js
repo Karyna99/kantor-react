@@ -1,4 +1,4 @@
-const renderResult = ({targetAmount, outputCurrency}) => {
+const renderResult = ({ targetAmount, outputCurrency }) => {
   return `${targetAmount.toFixed(2)} ${outputCurrency}`
 };
 

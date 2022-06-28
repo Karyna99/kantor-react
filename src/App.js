@@ -13,7 +13,7 @@ function App() {
       <Container>
         <Header
           title="Kalkulator walut" />
-          <Date/>
+        <Date />
         <Section
           body={<Form />}
         />
